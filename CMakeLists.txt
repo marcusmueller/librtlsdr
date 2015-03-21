@@ -37,6 +37,10 @@ if(NOT LIB_INSTALL_DIR)
    set(LIB_INSTALL_DIR lib)
 endif()
 
+if(NOT UDEV_RULES_DIR)
+   set(UDEV_RULES_DIR "/etc/udev/rules.d")
+endif()
+
 # Set the version information here
 set(VERSION_INFO_MAJOR_VERSION 0) # increment major on api compatibility changes
 set(VERSION_INFO_MINOR_VERSION 5) # increment minor on feature-level changes
@@ -106,7 +110,7 @@ option(INSTALL_UDEV_RULES "Install udev rules for RTL-SDR" OFF)
 if (INSTALL_UDEV_RULES)
     install (
         FILES rtl-sdr.rules
-        DESTINATION "/etc/udev/rules.d"
+	DESTINATION ${UDEV_RULES_DIR}
         COMPONENT "udev"
         )
 else (INSTALL_UDEV_RULES)
